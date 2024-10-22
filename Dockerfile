@@ -2,7 +2,7 @@ FROM quay.io/fedora/fedora
 
 RUN yum install nginx -y && yum clean all
 
-#COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 #ADD https://github.com/Rupesh-git-eng/images/blob/main/nginx.conf
 
@@ -15,10 +15,10 @@ RUN yum install nginx -y && yum clean all
 RUN chmod g+rwx /var/log/nginx && \
     touch /var/run/nginx.pid && \
     chmod g+rwx /var/run/nginx.pid
-RUN sed 's/80/8080/g'  /etc/nginx/nginx.conf 
-RUN sed '/types_hash_max_size/a \ \   set_real_ip_from 0.0.0.0/0;' /etc/nginx/nginx.conf
-RUN sed '/types_hash_max_size/a \ \   real_ip_recursive on;' /etc/nginx/nginx.conf 
-RUN sed '/types_hash_max_size/a \ \   real_ip_header X-Forwarded-For;' /etc/nginx/nginx.conf
+#RUN sed 's/80/8080/g'  /etc/nginx/nginx.conf 
+#RUN sed '/types_hash_max_size/a \ \   set_real_ip_from 0.0.0.0/0;' /etc/nginx/nginx.conf
+#RUN sed '/types_hash_max_size/a \ \   real_ip_recursive on;' /etc/nginx/nginx.conf 
+#RUN sed '/types_hash_max_size/a \ \   real_ip_header X-Forwarded-For;' /etc/nginx/nginx.conf
 
 EXPOSE 8080
 
